@@ -1,12 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"calculator/calc"
 	"calculator/input"
 	"calculator/parser"
 	"calculator/validator"
 	"calculator/output"
-	"fmt"
+
 )
 
 func calcLoop() {
@@ -31,7 +32,7 @@ func calcLoop() {
 		if parseErr != nil {
 			fmt.Printf("Ошибка на этапе чтения данных: %v.\n", parseErr)
 			fmt.Println("Попробуйте ещё раз.")
-			calcLoop()
+			continue
 		}
 		result, calcErr := calc.Calculate(leftOperand, rightOperand, operator)
 		if calcErr != nil {

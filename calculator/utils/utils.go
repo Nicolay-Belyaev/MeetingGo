@@ -42,7 +42,7 @@ func RomanToInt(s string) int {
 	return result
 }
 
-func IntToRoman(n int) (string, error) {
+func IntToRoman(n int) string {
     // Список значений и соответствующих римских символов,
     // включая вычитательные пары (IV, IX, XL, XC, CD, CM)
     values := []int{
@@ -67,5 +67,5 @@ func IntToRoman(n int) (string, error) {
         n -= values[i] * count
     }
 
-    return result.String(), nil
+    return result.String()
 }

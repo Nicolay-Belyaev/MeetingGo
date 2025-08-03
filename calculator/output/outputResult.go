@@ -13,14 +13,11 @@ func OutputResult(result int, isRoman bool) error {
 		return nil
 	}
 
-	// Если в римских, то условие сложнее:
+	// Если в римских, то все, что меньше единицы нельзя показать:
 	if result < 1 {
 		return errors.New("в римских цифрах нельзя показать результат меньше единицы")
 	}
-	romanNum, err := utils.IntToRoman(result)
-	if err != nil {
-		panic(err)
-	}
+	romanNum := utils.IntToRoman(result)
 	fmt.Printf("Когитатор завершил работу. Результат: %s\n", romanNum)
 	return nil	
 }

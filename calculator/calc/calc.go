@@ -11,7 +11,7 @@ func Calculate(a int, b int, op string) (int, error) {
 		case "*":
 			return multiply(a, b)
 		case "/":
-			return Divide(a, b)
+			return divide(a, b)
 		default:
 			return 0, errors.New("неизвестный оператор")
 	}
@@ -29,7 +29,7 @@ func multiply(a, b int) (int, error) {
     return a * b, nil
 }
 
-func Divide(a, b int) (int, error) {
+func divide(a, b int) (int, error) {
     if b == 0 {
         return 0, errors.New("нельзя делить на ноль")
     }
