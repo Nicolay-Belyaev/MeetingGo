@@ -1,4 +1,4 @@
-package main
+package validator
 
 import (
     "strings"
@@ -55,7 +55,7 @@ func TestValidateInput(t *testing.T) {
 
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
-            valid, err := validateInput(tt.input)
+            valid, err := ValidateInput(tt.input)
 
             if valid != tt.expectValid {
                 t.Errorf("validateInput(%q): ожидалось валидность %t, получено %t", tt.input, tt.expectValid, valid)

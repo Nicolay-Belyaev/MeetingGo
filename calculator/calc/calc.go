@@ -1,8 +1,8 @@
-package main
+package calc
 
 import "errors"
 
-func calc(a int, b int, op string) (int, error) {
+func Calculate(a int, b int, op string) (int, error) {
     switch op {
 		case "+":
 			return sum(a, b)

@@ -1,10 +1,10 @@
-package main
+package parser
 
 import (
 	"errors"
+	"strconv"
 	"strings"
 	"unicode"
-	"strconv"
 )
 
 // Парсер "доверяет" валидатору, поэтому не проверяет явно ошибочные случаи (пустую строку, отсутствием одного или обоих операндов и др.).
@@ -13,7 +13,7 @@ import (
 // В целом, это спорная практика, так как увеличивает связность компонентов. С другой стороны, каждый компонент занимается только своей работой.
 // В рамках небольшой учебно-практической работы такой подход считаю допустимым.
 
-func Parser (input string) (int, string, int, bool, error) {
+func InputParser(input string) (int, string, int, bool, error) {
 	var leftOperand, rightOperand int
 	var operator string
 	var isRoman bool
@@ -39,13 +39,13 @@ func Parser (input string) (int, string, int, bool, error) {
 	var leftStr string = inputSpaceCleared[:operatorIndex]
 	var rightStr string = inputSpaceCleared[operatorIndex+1:]
 
-	// Если первый символ левого операнда арабская цифра, то достаточно привести тип операндов к int. 
+	// Если первый символ левого операнда арабская цифра, то достаточно привести тип операндов к int.
 	if isDigit(leftStr[0]) {
 		leftOperand, _ = strconv.Atoi(leftStr)
 		rightOperand, _ = strconv.Atoi(rightStr)
 		isRoman = false
 		return leftOperand, operator, rightOperand, isRoman, nil
-	// В противном случае необходимо преобразовать римские числа к арабским.
+		// В противном случае необходимо преобразовать римские числа к арабским.
 	} else {
 		leftOperand = romanToInt(leftStr)
 		rightOperand = romanToInt(rightStr)
@@ -54,12 +54,11 @@ func Parser (input string) (int, string, int, bool, error) {
 	}
 }
 
-
 func isDigit(b byte) bool {
 	return b >= '0' && b <= '9'
 }
 
-//гарантированно чистит инпут от всего, что похоже на пробел по unicode
+// гарантированно чистит инпут от всего, что похоже на пробел по unicode
 func removeSpaces(s string) string {
 	return strings.Map(func(r rune) rune {
 		if unicode.IsSpace(r) {

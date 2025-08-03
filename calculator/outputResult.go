@@ -15,7 +15,7 @@ func OutputResult(result int, isRoman bool) error {
 
 	// Если в римских, то условие сложнее:
 	if result < 1 {
-		return errors.New("когитатор завершил работу. В римских цифрах нельзя показать результат меньше единицы")
+		return errors.New("когитатор завершил работу. В римских цифрах нельзя показать результат меньше единицы\n")
 	}
 	romanNum, err := intToRoman(result)
 	if err != nil {

@@ -1,3 +1,3 @@
-module calc
+module calculator
 
 go 1.24.4

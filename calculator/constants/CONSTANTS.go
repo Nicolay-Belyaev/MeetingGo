@@ -1,14 +1,4 @@
-package main
-
-import (
-	"regexp"
-	"errors"
-)
-
-// TODO: минус такой реализации в том, что невозможно понять в чем именно была ошибка. Валидатор только говорит, правильно ли введена строка,
-// но не показывает причины ошибки, если она есть.
-
-var re = regexp.MustCompile(romanArabicPattern)
+package constants
 
 // Инпут должен соответствовать одному из двух вариантов: $|^
 // Первый вариант: оба операнда -- римские числа от I до X: (I|II|III|IV|V|VI|VII|VIII|IX|X)
@@ -16,10 +6,4 @@ var re = regexp.MustCompile(romanArabicPattern)
 // отделенный от операндов любым количеством (в том числе -- нулем) пробелов: \\s*
 // Второй вариант структурно аналогичен первому, только вместо римских чисел -- арабские: (10|[1-9])
 // И арабские и римские числа ограничены диапазоном от 1 до 10 (I до X).
-
-func validateInput(input string) (bool, error) {
-	if re.MatchString(input) {
-		return true, nil
-	}
-	return false, errors.New("ошибка валидации! проверьте правильность ввода")
-}
+const RomanArabicInputPattern = "^((I|II|III|IV|V|VI|VII|VIII|IX|X)\\s*[-+*/]\\s*(I|II|III|IV|V|VI|VII|VIII|IX|X))$|^((10|[1-9])\\s*[-+*/]\\s*(10|[1-9]))$"
