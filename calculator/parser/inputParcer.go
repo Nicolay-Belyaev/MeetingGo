@@ -21,7 +21,6 @@ func InputParser(input string) (int, string, int, bool, error) {
 	inputSpaceCleared := utils.RemoveSpaces(input)
 	operatorIndex := -1
 	for i, r := range inputSpaceCleared {
-		// TODO: подумать над регуляркой!
 		if r == '+' || r == '-' || r == '*' || r == '/' {
 			operatorIndex = i
 			operator = string(r)
