@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func GetInput() string {
+func GetInput() (string, error) {
 	var input string
 	scanner := bufio.NewScanner(os.Stdin)
 
@@ -17,8 +17,8 @@ func GetInput() string {
     }
 
     if err := scanner.Err(); err != nil {
-        fmt.Println("Ошибка ввода:", err)
+        return "", err
     }
 
-	return input
+	return input, nil
 }
